@@ -1,0 +1,13 @@
+---
+- name: ACL Config
+  hosts: csr1
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+   - name: extended ACL om ftp te blokkeren
+     ios_config:
+       lines:
+         - access-list 110 deny tcp any any eq 20
+         - access-list 110 permit ip any any
+       parents: ip access-list extended Services_List

@@ -1,0 +1,16 @@
+---
+#######################
+# EIGRP Configuratie  #
+#       CSR1000       #
+#######################
+- name: EIGRP op CSR1000v
+  hosts: csr1
+  connection: network_cli
+  gather_facts: false
+  tasks:
+    - name: configuratie EIGRP
+      ios_config:
+        parents: router eigrp 1
+        lines:
+          - network 172.16.100.0 0.0.0.255
+          - router-id 1.1.1.1
